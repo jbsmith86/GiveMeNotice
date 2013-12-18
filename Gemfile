@@ -3,9 +3,11 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: [:development, :test]
-gem 'pg', group: [:production]
+gem 'sqlite3'
+
+# Config for heroku
+#gem 'sqlite3', group: [:development, :test]
+#gem 'pg', group: [:production]
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -34,7 +36,7 @@ group :doc do
 end
 
 #twitter api gems
-gem 'twitter'
+gem "twitter", "~> 5.0.0"
 gem 'omniauth-twitter'
 
 # Use ActiveModel has_secure_password
@@ -48,3 +50,6 @@ gem 'omniauth-twitter'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'better_errors'
+gem 'binding_of_caller'

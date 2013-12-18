@@ -1,4 +1,6 @@
 GiveMeNotice::Application.routes.draw do
   resources :users
-  match '/auth/twitter/callback', to: 'sessions#create', via: 'get'
+  resource :session, only: [:new, :create, :destroy]
+  get '/auth/twitter/callback', to: 'sessions#create'
+  root "user#index"
 end

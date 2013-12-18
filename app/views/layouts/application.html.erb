@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GiveMeNotice</title>
+  <title>Give Me Notice</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <nav>
+    <%= link_to "Home", root_path %> -
+    <%= link_to "Alerts", root_path %> -
+    <% if current_user %>
+      <%= link_to 'Sign Out', session_path, method: :delete %>
+    <% else %>
+      <!--<%= link_to 'Sign In / Register with Twitter', '/auth/twitter/' %>-->
+      <%= link_to image_tag("sign-in-with-twitter-gray.png", :border=>0), '/auth/twitter/' %>
+    <% end %>
+  </nav>
+
+  <%= notice %>
+  <%= yield %>
 
 </body>
 </html>

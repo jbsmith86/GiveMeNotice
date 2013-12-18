@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216215028) do
+ActiveRecord::Schema.define(version: 20131218030500) do
+
+  create_table "twitter_accounts", force: true do |t|
+    t.string   "twitter_username"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "twitter_id"
+    t.integer  "user_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "twitter_id"
     t.string   "sms_number"
     t.datetime "created_at"
     t.datetime "updated_at"
