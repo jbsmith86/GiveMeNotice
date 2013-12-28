@@ -28,13 +28,13 @@ namespace :twitterapi do
           if tweet.text.downcase.includes?(keyword.phrase.downcase)
             if i.sms_enabled
               message = @client.account.sms.messages.create(:body => "Alert from twitter " +
-                i.feed_username + " - " + tweet,
+                i.feed_username + " - " + tweet.text,
                 :to => "+1" + i.user.sms_number,
                 :from => TWILIO_CONFIG['phone_number'])
               puts message.sid
             end
             if i.email_enabled
-              #mailer code
+              UserMailer.alert(i.user, i, tweet).deliver
             end
           end
         end
