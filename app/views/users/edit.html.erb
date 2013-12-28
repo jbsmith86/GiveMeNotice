@@ -1,0 +1,22 @@
+<div class="content">
+  <h1>Editing your notification preferences</h1>
+  <% @user.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %></div><br/>
+  <% end %>
+  <br/>
+  <div class="row">
+    <div class="col-md-4">
+      <%= bootstrap_form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
+        <%= f.email_field :email %>
+        <%= f.phone_field :sms_number, label: "Phone number" %>
+          <% if @user.twitter_account == nil %>
+            <br/>
+            <%= f.password_field :password, label: "New password" %>
+            <%= f.password_field :password_confirmation, label: "New password confirmation" %>
+          <% end %>
+        <br/>
+        <%= f.submit "Save", class: "btn btn-primary btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>

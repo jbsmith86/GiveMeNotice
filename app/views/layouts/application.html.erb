@@ -9,17 +9,20 @@
 <body>
 
   <nav>
-    <%= link_to "Home", root_path %> -
-    <%= link_to "Alerts", root_path %> -
+    <ul class="nav nav-pills">
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Alerts", alerts_path %></li>
     <% if current_user %>
-      <%= link_to 'Sign Out', session_path, method: :delete %>
+      <li><%= link_to "Preferences", edit_user_path(session[:user_id]) %></li>
+      <li><%= link_to 'Sign Out', session_path, method: :delete %></li>
     <% else %>
-      <!--<%= link_to 'Sign In / Register with Twitter', '/auth/twitter/' %>-->
-      <%= link_to image_tag("sign-in-with-twitter-gray.png", :border=>0), '/auth/twitter/' %>
+      <li><%= link_to "Sign In", new_session_path %></li>
     <% end %>
+    </ul>
   </nav>
-
-  <%= notice %>
+  <% if flash[:notice] %>
+    <div class="alert alert-danger alert-dismissable"><%= flash[:notice] %></div>
+  <% end %>
   <%= yield %>
 
 </body>

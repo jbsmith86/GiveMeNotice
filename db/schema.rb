@@ -11,23 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218030500) do
+ActiveRecord::Schema.define(version: 20131224030214) do
+
+  create_table "alerts", force: true do |t|
+    t.string   "name"
+    t.boolean  "email_enabled"
+    t.boolean  "sms_enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "feed_username"
+    t.integer  "feed_number"
+    t.integer  "user_id"
+  end
+
+  create_table "keywords", force: true do |t|
+    t.text     "phrase"
+    t.integer  "alert_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "twitter_accounts", force: true do |t|
     t.string   "twitter_username"
     t.string   "token"
     t.string   "secret"
+    t.string   "twitteruid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "twitter_id"
-    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
     t.string   "email"
+    t.string   "twitter_account_id"
     t.string   "sms_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
 end

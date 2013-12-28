@@ -35,12 +35,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-#twitter api gems
-gem "twitter", "~> 5.0.0"
-gem 'omniauth-twitter'
-
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -51,5 +47,19 @@ gem 'omniauth-twitter'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#error reporting gems
 gem 'better_errors'
 gem 'binding_of_caller'
+
+#twitter api gems
+gem 'twitter'
+gem 'omniauth-twitter'
+
+#twilio
+gem 'twilio-ruby'
+
+#added
+gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap_form'
+gem 'devise'
+gem 'whenever', :require => false

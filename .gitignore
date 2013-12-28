@@ -14,5 +14,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/config/initializers/omniauth.rb
+/config/twilio.yml
+/config/twitter.yml
 /config/initializers/secret_token.rb

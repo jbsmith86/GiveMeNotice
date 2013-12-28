@@ -10,12 +10,15 @@ class ApplicationController < ActionController::Base
   def require_user!
     if current_user.nil?
       flash[:notice] = "You are not allowed there"
-      redirect_to new_session_url
+      redirect_to root_url
     end
   end
 
   def current_user
     User.find(session[:user_id]) if session[:user_id]
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "Login record not found"
+      session[:user_id] = nil
+      redirect_to root_url
   end
-
 end

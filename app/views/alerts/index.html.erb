@@ -1,0 +1,29 @@
+<div class="content">
+  <h1>My Alerts</h1>
+  <table class = "table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Twitter Feed</th>
+      <th>Keywords</th>
+      <th>Actions</th>
+    </tr>
+    <% @alerts.each do |alert| %>
+    <tr>
+      <td><%= alert.name %></td>
+      <td><%= alert.feed_username %></td>
+      <td>
+        <% alert.keywords.each do |keyword| %>
+          "<%= keyword.phrase %>"
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_alert_path(alert) %> |
+        <%= link_to "Delete", alert_path(alert), method: :delete, data: { confirm: 'Are you sure?'} %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<%= link_to 'Add new alert', new_alert_path %>
+</div>

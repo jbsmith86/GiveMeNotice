@@ -4,6 +4,8 @@ class CreateTwitterAccounts < ActiveRecord::Migration
       t.string :twitter_username
       t.string :token
       t.string :secret
+      t.string :twitteruid
+      t.integer :user_id
 
       t.timestamps
     end
