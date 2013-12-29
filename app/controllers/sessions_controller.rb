@@ -9,13 +9,13 @@ class SessionsController < ApplicationController
     elsif params[:email] != nil
       sign_in_with_email(params)
     else
-      flash.now[:notice] = "Something went wrong"
+      flash.now[:danger] = "Something went wrong"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "Logged out!"
+    flash[:success] = "Logged out!"
     redirect_to root_url
   end
 end
@@ -26,10 +26,10 @@ def sign_in_with_email(params)
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    flash[:notice] = "Signed in"
+    flash[:success] = "Signed in"
     redirect_to alerts_url
   else
-    flash.now[:notice] = "Email/password did not match."
+    flash.now[:danger] = "Email/password did not match."
     render 'new'
   end
 end
@@ -48,16 +48,17 @@ def sign_in_with_twitter(callbackdata)
                                           user_id: @user.id)
     @twitter_account.save
     session[:user_id] = @user.id
-    flash[:notice] = "Thanks for creating an account."
+    flash[:success] = "Thanks for creating an account."
+    flash[:info] = "Please fill out your notification settings"
     redirect_to edit_user_url(@user.id)
 
   elsif twitter.secret == callbackdata['credentials']['secret']
     session[:user_id] = twitter.user_id
-    flash[:notice] = "You logged in with Twitter!"
+    flash[:success] = "You logged in with Twitter!"
     redirect_to alerts_url
 
   else
-    flash.now[:notice] = "Something went wrong"
+    flash.now[:danger] = "Something went wrong"
     redirect_to root_url
   end
 end

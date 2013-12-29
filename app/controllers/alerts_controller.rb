@@ -15,7 +15,7 @@ before_action :require_user!
   def edit
     @alert = Alert.find(params[:id])
     if @alert.user_id != session[:user_id]
-      flash[:notice] = "You are not allowed there"
+      flash[:danger] = "You are not allowed there"
       redirect_to root_url
     end
   end
@@ -29,7 +29,7 @@ before_action :require_user!
     @alert = @user.alerts.create(alert_params)
 
     if @alert.save
-      flash[:notice] = "Successfully created alert."
+      flash[:success] = "Successfully created alert."
       redirect_to alerts_url
     else
       render 'new'
@@ -40,7 +40,7 @@ before_action :require_user!
     @alert = Alert.find(params[:id])
 
     if @alert.update(alert_params)
-      flash[:notice] = "Successfully saved alert."
+      flash[:success] = "Successfully saved alert."
       redirect_to alerts_url
     else
       render 'edit'
@@ -51,7 +51,7 @@ before_action :require_user!
     @alert = Alert.find(params[:id])
     @alert.destroy
 
-    flash[:notice] = "Deleted alert."
+    flash[:success] = "Deleted alert."
 
     redirect_to alerts_url
   end

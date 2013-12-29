@@ -20,9 +20,12 @@
     <% end %>
     </ul>
   </nav>
-  <% if flash[:notice] %>
-    <div class="alert alert-info alert-dismissable"><%= flash[:notice] %></div>
-  <% end %>
+  <% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name %>">
+    <a class="close" data-dismiss="alert">×</a>
+    <%= msg %>
+  </div>
+<% end %>
   <%= yield %>
 
 </body>

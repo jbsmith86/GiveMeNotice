@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
 
     if @user.save
-      flash[:notice] = "Thanks for creating an account."
+      flash[:success] = "Thanks for creating an account."
       session[:user_id] = @user.id
       redirect_to alerts_url
     else
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = "Successfully saved user."
+      flash[:success] = "Successfully saved user."
       redirect_to users_url
     else
       render 'edit'
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
 
-    flash[:notice] = "Deleted user."
+    flash[:success] = "Deleted user."
 
     redirect_to users_url
   end
