@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131224030214) do
+ActiveRecord::Schema.define(version: 20131229090958) do
 
   create_table "alerts", force: true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20131224030214) do
     t.string   "feed_username"
     t.integer  "feed_number"
     t.integer  "user_id"
+    t.integer  "last_tweet_read"
   end
 
   create_table "keywords", force: true do |t|

@@ -21,23 +21,31 @@ namespace :twitterapi do
           config.bearer_token    = TWITTER_CONFIG['bearer_token']
         end
       end
-
-      tweets = twitter_client.user_timeline(i.feed_username)
+      if i.last_tweet_read == nil
+        tweets = twitter_client.user_timeline(i.feed_username)
+      else
+        tweets = twitter_client.user_timeline(i.feed_username, since_id: i.last_tweet_read)
+      end
       for tweet in tweets
         for keyword in i.keywords
           if tweet.text.downcase.match(keyword.phrase.downcase).present?
             if i.sms_enabled
+              number = "+1" + i.user.sms_number.to_s
               message = twilio_client.account.sms.messages.create(:body => "Alert from twitter " +
                 i.feed_username + " - " + tweet.text,
-                :to => "+1" + i.user.sms_number,
+                :to => number,
                 :from => TWILIO_CONFIG['phone_number'])
-              puts message.sid
             end
             if i.email_enabled
               UserMailer.alert(i.user, i, tweet).deliver
             end
           end
         end
+      end
+      if tweets.empty? == false
+        updatedrecord = Alert.find(i.id)
+        updatedrecord.last_tweet_read = tweets[0].id
+        updatedrecord.save
       end
     end
   end
