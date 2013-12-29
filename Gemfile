@@ -61,3 +61,5 @@ gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bootstrap_form'
 gem 'devise'
 gem 'whenever', :require => false
+gem 'execjs'
+gem 'therubyracer'
