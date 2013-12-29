@@ -21,8 +21,6 @@
 
 
 #Uncomment in production
-#every 5.minutes do
-#  rake "twitterapi:read_feeds"
-#end
-#
-#
+every 5.minutes do
+  rake "twitterapi:read_feeds"
+end
