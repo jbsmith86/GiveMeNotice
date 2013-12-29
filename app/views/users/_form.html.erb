@@ -1,8 +1,7 @@
 <% @user.errors.full_messages.each do |msg| %>
   <div class="alert alert-danger"><%= msg %></div><br/>
 <% end %>
-<div class="row">
-  <div class="col-md-4">
+
     <%= bootstrap_form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.email_field :email %>
       <%= f.phone_field :sms_number, label: "Phone number" %>
@@ -11,5 +10,3 @@
       <br/>
       <%= f.submit "Sign Up", class: "btn btn-primary btn-lg" %>
     <% end %>
-  </div>
-</div>
