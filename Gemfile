@@ -63,3 +63,4 @@ gem 'devise'
 gem 'whenever', :require => false
 gem 'execjs'
 gem 'therubyracer'
+gem 'unicorn'
