@@ -3,13 +3,15 @@
     <h1>Give Me Notice</h1>
 
     Welcome to "Give Me Notice" where you can get email and text alerts when people tweet things you are interested in.</br> Follow your favorite twitter feeds only when you need to.<br/>
-    <%= link_to image_tag("sign-in-with-twitter-gray.png", :border=>0), '/auth/twitter/' %>
 
   </div>
 </div>
 <div class="content">
   <div class="row">
     <div class="col-md-4">
+      <%= link_to image_tag("sign-up-with-twitter-link.png", :border=>0), '/auth/twitter/' %>
+      <hr><center>or</center>
+      <br/>
       <%= render 'form' %>
     </div>
     <div class="col-md-8">
