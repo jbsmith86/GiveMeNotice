@@ -4,7 +4,7 @@
 
     <%= bootstrap_form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
       <%= f.email_field :email %>
-      <%= f.phone_field :sms_number, label: "Phone number" %>
+      <%= f.phone_field :sms_number, label: "Phone number (US numbers only)" %>
       <%= f.password_field :password %>
       <%= f.password_field :password_confirmation %>
       <br/>

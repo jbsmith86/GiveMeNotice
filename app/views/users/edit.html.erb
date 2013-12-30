@@ -8,7 +8,7 @@
     <div class="col-md-4">
       <%= bootstrap_form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
         <%= f.email_field :email %>
-        <%= f.phone_field :sms_number, label: "Phone number" %>
+        <%= f.phone_field :sms_number, label: "Phone number (US numbers only)", value: number_to_phone(@user.sms_number, area_code: true) %>
           <% if @user.twitter_account == nil %>
             <br/>
             <%= f.password_field :password, label: "New password" %>
