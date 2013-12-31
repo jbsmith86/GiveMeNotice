@@ -17,8 +17,8 @@
         <% end %>
       </td>
       <td>
-        <%= link_to "Edit", edit_alert_path(alert) %> |
-        <%= link_to "Delete", alert_path(alert), method: :delete, data: { confirm: 'Are you sure?'} %>
+        <%= button_to "Edit", edit_alert_path(alert), {method: :get, :class=> "btn btn-default", :style=>'float:left; margin-right:5px;'} %>
+        <%= button_to "Delete", alert_path(alert), {method: :delete, :class=> "btn btn-danger",  :style=>'float:left;', data: { confirm: "Are you sure?" }} %>
       </td>
     </tr>
   <% end %>
