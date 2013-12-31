@@ -9,6 +9,6 @@ class UserMailer < ActionMailer::Base
   def alert(user, alert, tweet)
     @tweet = tweet
     @alert = alert
-    mail to: user.email, subject: "You have a new alert"
+    mail to: user.email, subject: "You have a new alert from Give Me Notice"
   end
 end
