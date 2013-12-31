@@ -22,6 +22,7 @@ before_action :require_user!
 
   def new
     @alert = Alert.new
+    @alert.keywords.new
   end
 
   def create

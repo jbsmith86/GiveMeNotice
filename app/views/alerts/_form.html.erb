@@ -1,31 +1,16 @@
-<% @alert.errors.full_messages.each do |msg| %>
-  <div class="alert alert-danger"><%= msg %></div><br/>
-<% end %>
-<%= form_for @alert do |f| %>
-  <div class="form-group">
-  <%= f.label :name %>
-  <%= f.text_field :name %><br/>
-  <%= f.label :feed_username %>
-  <%= f.text_field :feed_username %><br/>
-  </div>
-  <div class="form-group">
+<%= bootstrap_form_for(@alert) do |f| %>
+  <%= f.text_field :name, label: "Alert name", placeholder: "i.e. My alert"  %>
+  <%= f.text_field :feed_username, label: "Twitter feed username", placeholder: "i.e. SnoopDogg" %>
   <label class="checkbox-inline">
-  <%= f.label :email_enabled %>
-  <%= f.check_box :email_enabled %><br/>
+  <%= f.check_box :email_enabled, label: "Emails enabled" %>
   </label>
   <label class="checkbox-inline">
-  <%= f.label "Text Enabled" %>
-  <%= f.check_box :sms_enabled %><br/>
-  </label></br>
-  </div>
-  <div class="form-group">
+  <%= f.check_box :sms_enabled, label: "Text messages enabled" %>
+  </label><br/><br/>Enter keywords you want to track for the twitter username you entered (i.e. "Tickets" "Concert" "Sale"):<br/><br/>
     <%= f.fields_for :keywords do |builder| %>
       <%= render 'keyword_fields', f: builder %>
     <% end %>
-  <%= link_to_add_fields "Add Keyword", f, :keywords %><br/>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= link_to_add_fields "Add Keyword", f, :keywords %><br/><br/>
+  <%= f.submit "Save", class: "btn btn-primary btn-lg" %>
 <% end %>
 
