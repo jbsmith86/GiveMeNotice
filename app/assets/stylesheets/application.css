@@ -14,7 +14,9 @@
  */
 
 .content {
-  padding: 0px 50px 50px 50px;
+  padding: 0px 80px 30px 80px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .twitterbutton{
@@ -23,6 +25,6 @@
 
 #footer{
   text-align: center;
-  padding: 0px 0px 20px 0px;
+  padding: 0px 0px 15px 0px;
   font-size: 10px;
 }
