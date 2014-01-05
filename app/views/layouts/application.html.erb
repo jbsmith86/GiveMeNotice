@@ -30,7 +30,7 @@
     <%= yield %>
     <div id="footer">
       <footer>
-        Give Me Notice &#169; <%= Time.now.year %> &nbsp;About Us &nbsp;Contact
+        Give Me Notice &#169; <%= Time.now.year %> &nbsp;<%= link_to "About Us", about_path %> &nbsp;<%= link_to "Contact", contact_path %>
       </footer>
     </div>
   </body>
