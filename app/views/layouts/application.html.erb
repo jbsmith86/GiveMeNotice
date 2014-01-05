@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Give Me Notice</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Give Me Notice</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <nav>
-    <ul class="nav nav-pills">
-    <li><%= link_to "Home", root_path %></li>
-    <li><%= link_to "Alerts", alerts_path %></li>
-    <% if current_user %>
-      <li><%= link_to "Preferences", edit_user_path(session[:user_id]) %></li>
-      <li><%= link_to 'Sign Out', session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to "Sign In", new_session_path %></li>
+  <body>
+    <nav>
+      <ul class="nav nav-pills">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Alerts", alerts_path %></li>
+      <% if current_user %>
+        <li><%= link_to "Preferences", edit_user_path(session[:user_id]) %></li>
+        <li><%= link_to 'Sign Out', session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign In", new_session_path %></li>
+      <% end %>
+      </ul>
+    </nav>
+
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <%= msg %>
+      </div>
     <% end %>
-    </ul>
-  </nav>
-  <% flash.each do |name, msg| %>
-  <div class="alert alert-<%= name %>">
-    <a class="close" data-dismiss="alert">×</a>
-    <%= msg %>
-  </div>
-<% end %>
-  <%= yield %>
-
-</body>
+    <%= yield %>
+    <div id="footer">
+      <footer>
+        Give Me Notice &#169; <%= Time.now.year %> &nbsp;About Us &nbsp;Contact
+      </footer>
+    </div>
+  </body>
 </html>
