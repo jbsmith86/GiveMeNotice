@@ -16,4 +16,5 @@
 /tmp
 /config/twilio.yml
 /config/twitter.yml
+/config/googleapps.yml
 /config/initializers/secret_token.rb
