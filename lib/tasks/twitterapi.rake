@@ -31,8 +31,8 @@ namespace :twitterapi do
           if tweet.text.downcase.match(keyword.phrase.downcase).present?
             if i.sms_enabled
               number = "+1" + i.user.sms_number.to_s
-              message = twilio_client.account.sms.messages.create(:body => "Alert from twitter " +
-                i.feed_username + " - " + tweet.text,
+              message = twilio_client.account.sms.messages.create(:body =>
+                (i.feed_username + " says: " + tweet.text).truncate(160),
                 :to => number,
                 :from => TWILIO_CONFIG['phone_number'])
             end
