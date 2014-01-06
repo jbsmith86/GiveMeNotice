@@ -7,7 +7,7 @@ namespace :twitterapi do
     twilio_client = Twilio::REST::Client.new twilio_account_sid, twilio_auth_token
 
     for i in Alert.all
-      if i.user.twitter_account != nil
+      if i.user.twitter_account.present?
         twitter_client = Twitter::REST::Client.new do |config|
           config.consumer_key        = TWITTER_CONFIG['consumer_key']
           config.consumer_secret     = TWITTER_CONFIG['consumer_secret']
