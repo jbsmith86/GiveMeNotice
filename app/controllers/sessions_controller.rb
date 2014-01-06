@@ -29,7 +29,7 @@ def sign_in_with_email(params)
     flash[:success] = "Signed in"
     redirect_to alerts_url
   else
-    flash.now[:danger] = "Email/password did not match."
+    flash.now[:danger] = "Email/password entered did not match our records."
     render 'new'
   end
 end
@@ -52,13 +52,16 @@ def sign_in_with_twitter(callbackdata)
     flash[:info] = "Please fill out your notification settings"
     redirect_to edit_user_url(@user.id)
 
-  elsif twitter.secret == callbackdata['credentials']['secret']
-    session[:user_id] = twitter.user_id
-    flash[:success] = "You logged in with Twitter!"
-    redirect_to alerts_url
-
   else
-    flash.now[:danger] = "Something went wrong"
-    redirect_to root_url
+    if callbackdata['extra']['access_token'].consumer.secret == TWITTER_CONFIG['consumer_secret']
+      twitter.secret = callbackdata['credentials']['secret']
+      twitter.token = callbackdata['credentials']['token']
+      twitter.save
+      session[:user_id] = twitter.user
+      flash[:success] = "You signed in with Twitter"
+      redirect_to alerts_url
+    else
+      flash.now[:danger] = "Something went wrong"
+    end
   end
 end
